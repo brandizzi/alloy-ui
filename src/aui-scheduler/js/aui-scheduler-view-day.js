@@ -738,6 +738,18 @@ var SchedulerDayView = A.Component.create({
             return instance.columnShims.item(instance.getDateDaysOffset(date));
         },
 
+        getEndColumnShim: function(event) {
+            var instance = this;
+
+            return instance.getColumnShimByDate(event.get('endDate'));
+        },
+
+        getStartColumnShim: function(event) {
+            var instance = this;
+
+            return instance.getColumnShimByDate(event.get('startDate'));
+        },
+
         /**
          * Returns the `Date` determined by a given column `Node`.
          *
@@ -806,8 +818,8 @@ var SchedulerDayView = A.Component.create({
 
             var node = evt.get('node').item(0);
             var paddingNode = evt.get('node').item(1);
-            var endShim = instance.getColumnShimByDate(evt.get('endDate'));
-            var startShim = instance.getColumnShimByDate(evt.get('startDate'));
+            var endShim = instance.getEndColumnShim(evt);
+            var startShim = instance.getStartColumnShim(evt);
 
             if (startShim) {
                 startShim.append(node);
