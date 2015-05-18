@@ -675,6 +675,16 @@ var SchedulerDayView = A.Component.create({
         },
 
         /**
+         * Given a column shim index, return the events to be plotted there.
+         */
+        getEventsFromColumnShimIndex: function(i) {
+            var instance = this;
+            var scheduler = instance.get('scheduler');
+
+            return scheduler.getEventsByDay(instance.getDateByColumn(i), true);
+        },
+
+        /**
          * Returns the value of the date that follows the day view's current
          * date.
          *
@@ -845,7 +855,7 @@ var SchedulerDayView = A.Component.create({
             instance.get('scheduler').flushEvents();
 
             instance.columnShims.each(function(colShimNode, i) {
-                var columnEvents = scheduler.getEventsByDay(instance.getDateByColumn(i), true);
+                var columnEvents = instance.getEventsFromColumnShimIndex(i);
                 var plottedEvents = [];
 
                 colShimNode.empty();
