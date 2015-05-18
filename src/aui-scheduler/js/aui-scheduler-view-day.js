@@ -449,6 +449,17 @@ var SchedulerDayView = A.Component.create({
         },
 
         /**
+         * The number of columns to be displayed. By default, each column is a
+         * day, but the view can change this behavior.
+         *
+         * @attribute columnCounter
+         * return {int}
+         */
+        columnCounter: {
+            valueFn: '_valueColumnCounter'
+        },
+
+        /**
          * Contains the function that returns the `markercells` node.
          *
          * @attribute markercellsNode
@@ -1700,6 +1711,19 @@ var SchedulerDayView = A.Component.create({
             }
 
             return A.NodeList.create(buffer.join(''));
+        },
+
+        /**
+         * Returns the `columnCounter` value.
+         *
+         * @method _valueColumnCounter
+         * @protected
+         * @return {number} The number of columns to be plotted.
+         */
+        _valueColumnCounter: function() {
+            var instance = this;
+
+            return instance.get('days');
         },
 
         /**
