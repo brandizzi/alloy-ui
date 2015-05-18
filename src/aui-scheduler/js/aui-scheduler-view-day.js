@@ -615,7 +615,7 @@ var SchedulerDayView = A.Component.create({
 
             SchedulerDayView.superclass.syncUI.apply(this, arguments);
 
-            instance.gridContainer.attr('colspan', instance.get('days'));
+            instance.gridContainer.attr('colspan', instance.get('columnCounter'));
 
             instance.syncCurrentTimeUI();
 
@@ -1672,11 +1672,11 @@ var SchedulerDayView = A.Component.create({
          */
         _valueColDaysNode: function() {
             var instance = this;
-            var days = instance.get('days');
+            var columnCounter = instance.get('columnCounter');
             var buffer = [],
                 colNumber = 0;
 
-            while (days--) {
+            while (columnCounter--) {
                 buffer.push(
                     A.Lang.sub(TPL_SCHEDULER_VIEW_DAY_TABLE_COLDAY, {
                         colNumber: colNumber++
@@ -1696,13 +1696,13 @@ var SchedulerDayView = A.Component.create({
          */
         _valueColHeaderDaysNode: function() {
             var instance = this;
-            var days = instance.get('days');
+            var columnCounter = instance.get('columnCounter');
             var buffer = [],
                 colNumber = 0;
 
             buffer.push(TPL_SCHEDULER_VIEW_DAY_HEADER_DAY_FIRST);
 
-            while (days--) {
+            while (columnCounter--) {
                 buffer.push(
                     A.Lang.sub(TPL_SCHEDULER_VIEW_DAY_HEADER_DAY, {
                         colNumber: colNumber++
